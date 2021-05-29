@@ -40,5 +40,33 @@ app.get('/divide', (req, res) => {
     res.send(`By dividing the sum of two numbers is ${divide}`)
 });
 
+// Build the next endpoints of our calculator path params:
+// - http://localhost:3000/add/10/2
+// - http://localhost:3000/substract/10/2
+// - http://localhost:3000/multiply/10/2
+// - http://localhost:3000/divide/10/2
+
+app.get('/:operation/:value1/:value2' , (req,res) => {
+    const operation = req.params.operation
+    const number1 =  parseInt(req.params.value1)
+    const number2 =  parseInt(req.params.value2)
+    let result 
+    if (operation == 'add' ) {
+        result = number1 + number2
+    }
+    if (operation == 'substract' ) {
+        result = number1 - number2
+    }
+    if (operation == 'multiply' ) {
+        result = number1 * number2
+    }
+    if (operation == 'divide' ) {
+        result = number1 / number2
+    }
+
+    res.send(`This is the result: ${result}`)
+
+}  )
+
 
 app.listen(3000, () => console.log("Server is up and running"))
